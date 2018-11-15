@@ -15,14 +15,16 @@ simplicity you can just run `bin/start-minishift.sh` which will do this for you.
 Alternatively, you can run `bin/start-oc-cluster-up.sh`, which will start your local cluster and add
 Cluster Admin permissions to the `developer` user (so that you can see all the Projects in the UI Console).
 
-## Overview
+
+## Basic demo
+
+### Overview
 
 The demo contains the following parts:
 
 * Keycloak
-* Node.js REST service
-* PHP REST service
-* HTML5 application
+* Node.js REST service secured with Keycloak Node.js adapter
+* HTML5 application secured with Keycloak JavaScript adapter
 * Spring application for Mutual TLS
 
 ## Starting Keycloak
@@ -47,16 +49,6 @@ To find the hostname of the service run `oc get routes demo-service`. Then open 
 in your favorite browser. You can also try `https://<hostname>/secured`, but this will return a 401 as you
 are not authenticated at this point.
 
-## Deploying the PHP service
-
-The PHP service is a very simple API that is secured with the Keycloak Generic adapter.
-
-Simply run `bin/start-service-php.sh` and the service will be deployed to OpenShift. 
-
-To find the hostname of the service run `oc get routes demo-service-php`. Then open `https://<hostname>/public` 
-in your favorite browser. You can also try `https://<hostname>/secured`, but this will return a 401 as you
-are not authenticated at this point.
-
 ## Deploying the HTML5 application
 
 The HTML5 application is a basic web application that is secured with the Keycloak JavaScript adapter.
@@ -74,7 +66,25 @@ do that.
 
 One last fun thing you can try is to change the application to invoke the PHP service instead.
 
-## Deploying the Spring Mutual TLS app
+
+##  Additional things to try
+
+
+### Keycloak Gatekeeper
+
+The PHP service is a very simple API that is secured with the Keycloak Generic adapter.
+
+Simply run `bin/start-service-php.sh` and the service will be deployed to OpenShift. 
+
+To find the hostname of the service run `oc get routes demo-service-php`. Then open `https://<hostname>/public` 
+in your favorite browser. You can also try `https://<hostname>/secured`, but this will return a 401 as you
+are not authenticated at this point.
+
+As the PHP service provides the same API as the Node.js service from the basic demo you can configure the HTML5
+application to invoke it. To do this run `bin/switch-app-service.sh php`.
+
+
+### Client Mutual SSL authentication
 
 The Mutual TLS application demonstrates how to use Mutual TLS with x509 Client Authenticator. It should be 
 considered as a separate piece from the PHP, Node.js and HTML5 application (although it exposes the same

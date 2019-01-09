@@ -8,7 +8,7 @@
             "credentials": [
                 {
                     "type": "password",
-                    "value": "pass"
+                    "value": "test"
                 }
             ],
             "realmRoles": [

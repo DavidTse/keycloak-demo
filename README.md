@@ -54,7 +54,7 @@ are not authenticated at this point.
 The HTML5 application is a basic web application that is secured with the Keycloak JavaScript adapter.
 You can login to the application through Keycloak and then securely invoke the Node.js service.
 
-Simply run `bin/start-app-php.sh` and the application will be deployed to OpenShift.
+Simply run `bin/start-app.sh` and the application will be deployed to OpenShift.
  
 To find the hostname of the service run `oc get routes demo-app`. Then open `https://<hostname>/public` 
 in your favorite browser. Click on the login button and login with username `keycloak` and password `test`.
